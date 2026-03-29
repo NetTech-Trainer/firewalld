@@ -123,6 +123,55 @@ sudo firewall-cmd --reload
 ```
 
 ---
+Here’s a clean **GitHub README-friendly format** for your commands 👇
+
+---
+
+## 🚫 Block Outgoing Traffic to Specific IP using firewalld (Direct Rule)
+
+### 📌 Add Rule
+
+```bash
+firewall-cmd --direct --add-rule ipv4 filter OUTPUT 0 -d 31.13.66.35 -j DROP
+```
+
+---
+
+### 🔍 Verify Rule
+
+```bash
+firewall-cmd --direct --get-all-rules
+```
+
+---
+
+### 💾 Make Rule Permanent
+
+```bash
+firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -d 31.13.66.35 -j DROP
+firewall-cmd --reload
+```
+
+---
+
+### 📖 Explanation
+
+* **ipv4** → Applies to IPv4 traffic
+* **filter** → Netfilter table
+* **OUTPUT** → Outgoing traffic from system
+* **0** → Priority (lower = higher priority)
+* **-d 31.13.66.35** → Destination IP to block
+* **-j DROP** → Silently drop packets
+
+---
+
+### ⚠️ Notes
+
+* This rule blocks **outgoing connections** to the specified IP.
+* Uses **direct rules** (low-level control similar to iptables).
+* Changes without `--permanent` are **temporary**.
+
+---
 
 # 🛡️ Firewalld Zones
 
